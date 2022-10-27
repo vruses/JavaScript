@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ifelse</title>
+</head>
+
+<body>
+    <script>
+        // typeof Number(10) //number
+        // typeof new Number(10) //object
+        // typeof Date() //string
+        // typrof new Date() //object
+        // 当任意一个普通函数用于创建一类对象时，它就被称作构造函数，或构造器。
+        // new操作符来调用一个构造函数时, 创建一个空对象obj,
+        // 将这个空对象的__proto__成员指向了构造函数对象的prototype成员对象
+        // Date() 就是一个静态方法、 普通函数返回一个时间string作为普通函数的返回值
+
+        var time = new Date().getHours();
+        alert(time)
+        if (4 < time && time < 12) {
+            document.writeln('<b>Good morning!</b>')
+        } else if (12 < time && time < 18) {
+            document.writeln('<b>Good afternoon!</b>')
+
+        } else {
+            document.writeln('<b>Good evening!</b>')
+        }
+
+        /*自调用函数*/
+        //  {}
+        // 包围对象object
+        // 包围代码块code block(如方法体，或普通代码块等)。
+        // ()
+        // 包围参数列表
+        // 自调用表达式， 包围一些需要通过运算得出结果的代码(其中包围的代码会执行一次)。
+        // 函数表达式可以自调用(即自动运行一次)。
+        // 如果表达式后面紧跟()， 会自动调用。
+        // 不能自调用声明的函数， 通过添加括号， 来说明他是一个函数表达式。
+        function foo() {
+            console.log("hello") //声明一个函数foo
+        }
+        foo(); //调用
+        // (function bar() {
+        //     console.log("world!") //声明一个函数bar
+        // })
+        // bar(); //调用，bar is not defined
+        // 箭头函数表达式(ES6) 的返回值
+        // 箭头函数表达式x => x， 表示function(x) { return x; }。
+        // 但如果返回值是object类型， 则不能为x => {name: 'JT' }, ，需要改为x => ({name: 'JT' })
+
+        getObj = (num) => {
+            age: num
+        }; //getObj(100)得不到对象返回值，undefined
+        getObj = (num) => ({
+            age: num
+        }); //getObj(100),得到{age:100}
+
+
+
+
+        /*创建匿名函数并立即执行*/
+        //function(str){return str;}//Identifier expected.javascript
+        func = (function(str) { //得到函数
+                return str;
+            }) //用（）包围代码段成为一个函数
+        returnValue = (function(str) { //得到函数执行一次的返回值
+                return str;
+            })("test") //函数后加（...args），得到的函数会执行一次
+
+
+
+
+        /*对应的if else结构还能这样写，类似于c里面的switch*/
+        var minute = new Date().getMinutes();
+        let obj = {
+                '10': () => { //箭头函数表达式
+                    document.writeln('10') //如果大括号里的是一个对象，大括号外还应该加一个小括号
+                },
+                '20': () => {
+                    document.writeln('20')
+                },
+                '30': () => {
+                    document.writeln('30')
+                }
+            }
+            // 相当于
+        key = '10';
+        value = (function() {
+                return document.write("10")
+            })
+            //obj{key,value}
+            // obj[minute]();//如果没有上述条件，报错：obj[minute] is not a function，
+            //因为obj[minute]是键为minute的值，没有该键对应的值也就不存在对应的自调用函数函数
+            //obj[minute]()跟着的空括号是传入参数并得到函数执行的值，但这个自调用函数不需要传值所以括号里为空
+        obj[minute]();
+        document.write("如果当前时间分钟数不是10/20/30中的任意一个数，这一条应该不会被执行。");
+
+        /*总结*/
+        //1、构造器
+        // 当任意一个函数用于创建一类对象， 它们被称为构造器
+        // 2、 自调用函数
+        // 自调用表达式： 包含一些需要运算得出结果的代码， 函数可以自调用， 自调用表达式后紧跟括号会自动调用
+        // 3、匿名函数
+        // 箭头函数表达式x => x， 表示function(x) { return x; }。如果返回值是一个object则需要添加（）
+        // 匿名函数没有函数名，函数体需要用（）包围，紧跟（args）会使函数执行一次
+    </script>
+</body>
+
+</html>

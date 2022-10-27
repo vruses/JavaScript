@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event</title>
+</head>
+
+<body>
+    <!--
+        常见的HTML事件：
+        onchange	HTML 元素改变
+        onclick	    用户点击 HTML 元素
+        onmouseover	鼠标指针移动到指定的元素上时发生
+        onmouseout	用户从一个 HTML 元素上移开鼠标时发生
+        onkeydown	用户按下键盘按键
+        onload	    浏览器已完成页面的加载
+    -->
+    <button id='demo' onclick="document.getElementById('demo').innerHTML=Date()">现在的时间是？</button><br>
+    <button onclick="this.innerHTML=Date()">现在的时间是？</button><br>
+    <button id='test'>test</button><br>
+    <button id="foo">foo</button>
+    <script>
+        var test = document.getElementById("test");
+        var test2 = document.getElementById("foo");
+        // alert(test);
+        test.onclick = function changeContent() {
+            test.innerHTML = Date();
+        }
+
+        function changeContext() {
+            test2.innerHTML = Date();
+        }
+        //高内聚，低耦合，事件监听和html分开写
+        test2.addEventListener('click', changeContext, true); //添加监听事件，注意不要使用onclick
+        //addEventListener(event,function,useCapture),事件捕获和事件冒泡，由内到外和由外到内
+        test2.removeEventListener('click', changeContext, true); //移除监听事件
+    </script>
+</body>
+
+</html>

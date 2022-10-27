@@ -1,0 +1,49 @@
+<!-- <input id="btn" type="button" value="BUTTON" onclick="alert(1)" />
+<script>
+    var btn = document.getElementById('btn');
+    btn.click();
+</script>
+<div id="d1" style="background:gold;width:50px;height:50px;" onclick="alert(2)"></div>
+<script>
+    var d1 = document.getElementById('d1');
+    d1.click();
+</script>
+<input id="btn1" type="button" value="BUTTON 1" onclick="alert(1)" />
+<input id="btn2" type="button" value="BUTTON 2" onclick="alert(2)" />
+<div id="d1" style="background:gold;width:50px;height:50px;" onclick="alert(3)"></div>
+<script>
+    function dispatch(el, type) {
+        try {
+            var evt = document.createEvent('Event');
+            evt.initEvent(type, true, true);
+            el.dispatchEvent(evt);
+        } catch (e) {
+            alert(e)
+        };
+    }
+    var btn1 = document.getElementById('btn1');
+    var btn2 = document.getElementById('btn2');
+    var d1 = document.getElementById('d1');
+    dispatch(btn1, 'click');
+    dispatch(btn2, 'click');
+    dispatch(d1, 'click');
+</script>
+<a href="http://qq.com" target="_blank">blank</a>
+<a href="http://qq.com" target="_self">self</a>
+<a href="http://qq.com" target="_top">top</a>
+<a href="http://qq.com" target="_parent">parent</a>
+<a href="http://qq.com">QQ</a>
+<a href="qq.com">QQ</a>
+<a href="javascript:;">qq</a> -->
+<div class="link">
+    <a href="http://www.baidu.com" target='_blank'>baidu</a>
+    <a href="http://www.taobao.com" target='_blank'>taobao</a>
+    <a href="http://www.jd.com" target='_blank'>jd</a>
+</div>
+<script type="text/javascript">
+    var link = document.getElementsByClassName("link")[0].getElementsByTagName("a");
+    for (var i = 1; i < link.length; i++) {
+        link[i].click();
+    }
+</script>
+var link = document.getElementsByClassName("nav")[0].getElementsByTagName("li"); for (var i = 1; i < link.length; i++) { link[i].click(); }

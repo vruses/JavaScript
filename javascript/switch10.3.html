@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function myFunction() {
+            var day = new Date().getDay()
+            switch (day) {
+                case 6:
+                    x = "Today is Saturday"
+                    break; //不用break会直接往下执行    
+                case 0:
+                    x = "Today is Sunday"
+                    break;
+                default:
+                    x = 'Looking forward to the weekend'
+
+            }
+            document.getElementById('demo').innerHTML = x
+        }
+    </script>
+    <p id="demo">点击按钮显示今日日期消息</p>
+    <button type="button" onclick="myFunction()">点击</button>
+</body>
+
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function writes() {
+            document.write("<h>文档已被覆盖，注意，在文档加载使用write将会导致文档全被覆盖</h>");
+        }
+
+        function myFunction() {
+            document.getElementById("demo").innerHTML = "Hello JavaScript！";
+        }
+
+        function isNotANumber() {
+            var x = document.getElementById("put").value;
+            if (x == '' || isNaN(x)) {
+                window.alert("不是数字");
+            } else {
+                document.getElementById("demo").innerHTML = "是数字";
+            }
+        }
+    </script>
+
+</head>
+
+<body>
+    <h1>write isNaN 函数测试</h1>
+    <p id="demo">js能够改变html元素内容html</p>
+    <input id="put" type="text" />
+    <button type="button" onclick="isNotANumber()">检验是否输入的是数字</button>
+    <button type="button" onclick="myFunction()">点击将会改变段落内容</button>
+    <button type="button" onclick="writes()">点击此处文档将被覆盖</button>
+</body>
+
+</html>

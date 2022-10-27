@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var person = {
+                firstName: "donald",
+                lastName: "trump",
+                age: 19,
+                fullName: "trump donald", //js对象重复属性以最后赋值的为准
+                fullName: function() {
+                    return this.firstName + " " + this.lastName;
+                }
+            } //person对象也可以new出来
+
+        function myFunction1() {
+            document.getElementById("demo").innerHTML = person.fullName();
+        }
+
+        function myFunction2() {
+
+            document.getElementById("demo").innerHTML = person.fullName; //不添加括号会返回函数定义
+            // var name=console.log("hello");
+            // document.write(name);//undefined
+        }
+    </script>
+    <p id="demo">调用person对象函数结果</p>
+    <button type="button" onclick="myFunction1()" ondblclick="myFunction2()">单击带括号效果，双击不带括号</button>
+</body>
+
+</html>

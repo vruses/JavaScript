@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ajax</title>
+    <script>
+        //AJAX = Asynchronous JavaScript and XML
+        //创建xmlHttpRequest对象
+        //注意跨域请求
+        /*Access to XMLHttpRequest at 'url' from origin 'null' 
+        has been blocked by CORS policy: Cross origin requests are only supported for protocol schemes: http, data, 
+        isolated-app, chrome-extension, chrome, https, chrome-untrusted.
+        */
+        function loadXMLDoc() {
+
+            var xhr;
+            if (window.XMLHttpRequest) { //如果浏览器有XHR属性
+                //  IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码
+                xhr = new XMLHttpRequest();
+
+            } else {
+                // IE6, IE5 浏览器执行代码
+                xhr = new ActiveXObject("Microsoft.XMLHTTP")
+
+            }
+            //创建监听onreadystatechange=function(){}监听xhr.readyState等属性，
+            //readyState前两次变化在本地浏览器发生，不需要监听xhr的属性也会变化，而后两次变化由服务器响应引起,不监听就不会变更
+            //同样的responseText等服务器发送过来的响应不被监听就不会被更新
+            xhr.onreadystatechange = function() {
+                    // console.log("调用函数")
+                    alert("state:" + xhr.readyState + ";status:" + xhr.status);
+                    /*state:请求状态是具体的：0初始化请求，1建立请求->2发送请求，3处理请求->4响应完成*/
+                    // 定义： 倾向于现实生活中的物理状态， 是可以具体描述出来的
+                    // 例：
+                    // 1. 可以列举出来的具体几种情况
+                    // 2. 自然界固态、 液态， 可以具体描述的情况
+                    /* status：服务器状态是抽象的，下面列举的只是常见的服务器状态*/
+                    // 定义： 倾向于不确定的， 抽象的描述。
+                    // 例：
+                    // 1. 你的体重大概多少斤
+                    // 2. 我的身体现实是什么状况
+                    if (xhr.readyState == 4 && xhr.status == 200) {
+
+                        //存留问题，为什么抓包status为304，xhr.status仍然为200
+
+                        document.getElementById("demo").innerHTML = xhr.responseText;
+                        // responseText：作为响应主体被返回的文本。
+                        // responseXML：如果响应的内容类型是 "text/xml" 或 "application/xml"，这个属性中将保存包含着响应数据的XML DOM文档。
+                        // status： 响应的HTTP状态。
+                        // statusText： HTTP状态的说明。
+                    }
+                }
+                //一是URL相当当于执行代码的当前页面（当然也可以使用绝对路径）；
+                //二是调用open()方法并不会真正发送请求，而只是启动一个请求以备发送；
+                //三是只能向同一个域中使用相同端口和协议的URL发送请求；如果URL与启动请求的页面有任何差别，都会引发安全错误。
+            xhr.open("GET", "./ajax_info.txt", true); //boolean为true时为异步请求，send()方法执行后并不等待；反之则需要等待send完成浏览器才能做其他事
+            //执行open()，state：0->1;调用一次function
+            xhr.send(null); //仅限与get请求
+            //执行send()，state：1->2;2->3;3->4，调用三次function
+            // application/x-www-form-urlencoded是针对form的请求，所以get不需要设置content-type
+            // console.log("发送之后") //调用函数x3
+
+            // alert("state:" + xhr.readyState + ";status:" + xhr.status);测试xhr属性不被监听state属性会不会更新
+            // alert("state:" + xhr.readyState + ";status:" + xhr.status);，结果：就算服务器响应已经接受到，state也没更新
+            // alert("state:" + xhr.readyState + ";status:" + xhr.status);
+
+        }
+    </script>
+</head>
+
+<body>
+    <div id="demo">
+        <h2>使用ajax修改文本内容</h2>
+    </div>
+    <button type="button" onclick="loadXMLDoc()">修改内容</button>
+</body>
+
+</html>
+<!-- /* xhr.readyState 请求状态*/
+        //0，对应常量UNSENT，表示XMLHttpRequest实例已经生成，但是open()方法还没有被调用。
+        //1，对应常量OPENED，表示send()方法还没有被调用，仍然可以使用setRequestHeader()，设定HTTP请求的头信息。
+        //2，对应常量HEADERS_RECEIVED，表示send()方法已经执行，并且头信息和状态码已经收到。
+        //3，对应常量LOADING，表示正在接收服务器传来的body部分的数据，如果responseType属性是text或者空字符串，responseText就会包含已经收到的部分信息。
+        //4，对应常量DONE，表示服务器数据已经完全接收，或者本次接收已经失败了。
+        /*服务器状态码*/
+        //    1xx：表示临时响应并需要请求者继续执行操作的状态代码。初始化
+        //    100（继续）：请求者应当继续提出请求。服务器返回此代码表示已收到请求的第一部分，正在等待其余部分。
+        //    101（切换协议）：请求者已要求服务器切换协议，服务器已确认并准备切换。
+        //二、2xx：表示成功处理了请求的状态代码。成功
+        //    200（成功）：服务器已成功处理了请求。通常，这表示服务器提供了请求的网页。 **
+        //    201（已创建）：请求成功并且服务器创建了新的资源。
+        //    202（已接受）：服务器已接受请求，但尚未处理。
+        //    203（非授权信息）：服务器已成功处理了请求，但返回的信息可能来自另一来源。
+        //    204（无内容）：服务器成功处理了请求，但没有返回任何内容。
+        //    205（重置内容）：服务器成功处理了请求，但没有返回任何内容。
+        //    206 （部分内容）：服务器成功处理了部分 GET 请求。
+        //三 3xx：表示要完成请求，需要进一步操作。通常，这些状态代码用来重定向。(资源重定向)
+        //    300（多种选择）：针对请求，服务器可执行多种操作。服务器可根据请求者(useragent)选择一项操作，或提供操作列表供请求者选择。
+        //    301（永久移动）：请求的网页已永久移动到新位置。服务器返回此响应（对GET或HEAD请求的响应）时，会自动将请求者转到新位置。
+        //    302（临时移动）：服务器目前从不同位置的网页响应请求，但请求者应继续使用原有位置来进行以后的请求。
+        //    303（查看其他位置）：请求者应当对不同的位置使用单独的 GET 请求来检索响应时，服务器返回此代码。
+        //    304（未修改）：自从上次请求后，请求的网页未修改过。服务器返回此响应时，不会返回网页内容。 **
+        //    305（使用代理）：请求者只能使用代理访问请求的网页。如果服务器返回此响应，还表示请求者应使用代理。
+        //    307（临时重定向）：服务器目前从不同位置的网页响应请求，但请求者应继续使用原有位置来进行以后的请求。
+        //四、4xx：这些状态代码表示请求可能出错，妨碍了服务器的处理。客户端错误
+        //    400（错误请求）：服务器不理解请求的语法。
+        //    401（未授权）：请求要求身份验证。对于需要登录的网页，服务器可能返回此响应。
+        //    403（禁止）：服务器拒绝请求。
+        //    404（未找到）：服务器找不到请求的网页。
+        //    405（方法禁用）：禁用请求中指定的方法。
+        //    406（不接受）：无法使用请求的内容特性响应请求的网页。
+        //    407（需要代理授权）：此状态代码与 401（未授权）类似，但指定请求者应当授权使用代理。
+        //    408（请求超时）：服务器等候请求时发生超时。
+        //    409（冲突）：服务器在完成请求时发生冲突。服务器必须在响应中包含有关冲突的信息。
+        //    410（已删除）：如果请求的资源已永久删除，服务器就会返回此响应。
+        //    411（需要有效长度）：服务器不接受不含有效内容长度标头字段的请求。
+        //    412（未满足前提条件）：服务器未满足请求者在请求中设置的其中一个前提条件。
+        //    413（请求实体过大）：服务器无法处理请求，因为请求实体过大，超出服务器的处理能力。
+        //    414（请求的 URI 过长）：请求的 URI（通常为网址）过长，服务器无法处理。
+        //    415（不支持的媒体类型）：请求的格式不受请求页面的支持。
+        //    416（请求范围不符合要求）：如果页面无法提供请求的范围，则服务器会返回此状态代码。
+        //    417（未满足期望值）：服务器未满足"期望"请求标头字段的要求。
+        //五、5xx：这些状态代码表示服务器在尝试处理请求时发生内部错误。这些错误可能是服务器本身的错误，而不是请求出错。代码说明
+        //    500（服务器内部错误）：服务器遇到错误，无法完成请求。 服务端的错误
+        //    501（尚未实施）：服务器不具备完成请求的功能。例如，服务器无法识别请求方法时可能会返回此代码。
+        //    502（错误网关）：服务器作为网关或代理，从上游服务器收到无效响应。
+        //    503（服务不可用）：服务器目前无法使用（由于超载或停机维护）。通常，这只是暂时状态。
+        //    504（网关超时）：服务器作为网关或代理，但是没有及时从上游服务器收到请求。
+        //    505（HTTP 版本不受支持）：服务器不支持请求中所用的 HTTP 协议版本。 -->

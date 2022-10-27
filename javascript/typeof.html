@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<!--放在head里的script脚本会优先加载，如果不想拖慢页面加载速度可以把script脚本放在body标签里，但这样可能的后果是页面暂时缺失动态效果-->
+
+<body>
+    <script>
+        // js数据类型值类型(基本类型)：字符串（String）、数字(Number)、布尔(Boolean)、空（Null）、未定义（Undefined）、Symbol;
+        // 引用数据类型（对象类型）：对象(Object)、数组(Array)、函数(Function)，还有两个特殊的对象：正则（RegExp）和日期（Date）
+        var x;
+        var x = 5;
+        var x = "john"; //js拥有动态类型，相同变量可作用不同类型
+        var person = null; // 值为 null(空), 但类型为对象
+        var person = undefined; // 值为 undefined, 类型为 undefined，可以用来清空对象
+        typeof undefined // undefined
+        typeof null // object
+        null === undefined // false，类型不同
+        null == undefined // true
+        function myFunction() {
+            document.getElementById("demo").innerHTML = typeof "john" + "<br>" + typeof(3.14) + "<br>" + typeof([1, 2, 3, 4]) + "<br>" + typeof({
+                name: "john",
+                age: 24
+            })
+        }
+    </script>
+    <p id="demo">变量类型插入</p>
+    <button type="button" onclick="myFunction()">点击</button>
+
+</body>
+
+</html>

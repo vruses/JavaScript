@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        //先获取到两个输入标签里的数
+        //不同按钮调用响应运算函数，再调用获取输入内容的函数，将参数运算结果传给显示函数
+        // 显示函数通过id将值插入到结果位置
+        function getNumber() {
+            window.alert(val1);
+            val1 = document.getElementById("num1").value; //全局变量，在页面关闭后销毁
+            val2 = document.getElementById("num2").value;
+            return [val1, val2]; //以数组的形式将两个值返回
+        }
+
+        function add() {
+            sendResult(Number(getNumber()[0]) + Number(getNumber()[1])); //强制转成数字
+            // getNumber();
+            // sendResult(val2 + val2);
+        }
+
+        function substract() {
+            sendResult(Number(getNumber()[0]) - Number(getNumber()[1]));
+        }
+
+        function multiply() {
+            sendResult(Number(getNumber()[0]) * Number(getNumber()[1]));
+        }
+
+        function divide() {
+            sendResult(Number(getNumber()[0]) / Number(getNumber()[1]));
+        }
+
+        function sendResult(re) {
+            document.getElementById("output").innerHTML = re;
+        }
+
+        // function test() {
+        //     document.getElementById("test").innerHTML = getNumber();
+        // }
+    </script>
+</head>
+
+<br>
+<input id="num1" type="text"><br>
+<button type="button" onclick="add()">+</button>
+<button type="button" onclick="substract()">-</button>
+<button type="button" onclick="multiply()">x</button>
+<button type="button" onclick="divide()">÷</button><br>
+<input id="num2" type="text">
+<div id="output">answer</div>
+<!-- <button type="button" onclick="test()">test</button></br> -->
+<!-- <p id="test">测试</p> -->
+
+</body>
+
+</html>

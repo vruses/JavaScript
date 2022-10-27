@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var size = [1, 2, 3, 4, 5, 6, 7]
+            //变量i可以提前定义
+            //语句2同样是可省略的，如果语句2返回true则继续循环，返回false则终止循环，如果省略则必须在循环提供break
+            // 语句三也可以省略，前提在循环内有相应代码
+        for (var i = 0; i < size.length; i++) {
+            document.write(size[i] + '<br>')
+        }
+        var person = {
+            name: 'john',
+            sex: 'male',
+            age: '18'
+        }
+        var txt = ''
+        for (var x in person) { //数组同样可以使用
+            txt = txt + person[x]
+
+        }
+        document.write(txt);
+        var str = 'aaabbbbccccccdddddxxxx'
+            //求str里不同字母个数并放入字典中
+        var obj = {}
+            //判断字母是否存在，不存在则给value定为1，存在则循环value++
+            //当i<str.length结束循环
+        for (var i = 0; i < str.length; i++) {
+            char = str.charAt(i) //当前指针指向的字符
+            if (obj[char]) { //判断条件为undefined
+                obj[char]++
+            } else {
+                obj[char] = 1
+            }
+        }
+        // obj={a: 3, b: 4, c: 6, d: 5, x: 4}
+        var iterable = new Map([
+            ["a", 1],
+            ["b", 2],
+            ["c", 3]
+        ]);
+        alert(iterable); //[object Map]
+
+        let iterable = [10, 20, 30];
+
+        // for (const value of iterable) {
+        //     console.log(value);
+        // }
+        // // 10
+        // // 20
+        // // 30
+    </script>
+</body>
+
+</html>

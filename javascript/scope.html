@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scope</title>
+</head>
+
+<body>
+
+    <script>
+        var a = 1;
+
+        function foo() {
+            console.log(a);
+        }
+
+
+        function bar() {
+            // function foo() {
+            //     console.log(a);
+            // }
+
+            let a = 2;
+            foo();
+        }
+        bar(); //结果为1，js采用静态作用域，foo()函数被解析时在全局作用域，如果在bar()函数里解析结果就为2
+        for (let i = 0; i < 3; i++) {
+            i = 'abc';
+            alert(i); //据说两个i作用域不同
+        }
+    </script>
+
+</body>
+
+</html>

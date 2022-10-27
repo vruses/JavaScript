@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var character = "It's alright";
+        var character = "He is called 'Jonny'" //单双引号可嵌套，但不能相同
+            // var character = ""Hello"";//报错
+        var character = "It\'s allright" //添加转义符来使用引号
+        var txt = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+        var txtLen = txt.lenght;
+        // \'	单引号
+        // \"	双引号
+        // \\	反斜杠
+        // \n	换行
+        // \r	回车
+        // \t	tab(制表符)
+        // \b	退格符
+        // \f	换页符
+        var x = 'john'
+        var y = new String("john")
+        typeof x //string
+        typeof y //object
+        //new出来的字符串会拖慢速度，并且可能有其它副作用
+        x === y //false,对象类型不同，===不仅需要值相同，对象类型也要相同
+            //形如’John'的字符串为原始值字符串，没有属性和方法但仍可以使用属性和方法，因为javascript在执行方法和属性时可以把原始值当成对象
+            //!= 为 == 的非运算，!== 为 === 的非运算
+            //对于 Array,Object 等高级类型，== 和 === 是没有区别的,进行 "指针地址" 比较
+        console.log('john'.constructor) // String() { [native code] }   
+        console.log(x.prototype) //undefined
+            // charAt() //返回指定索引位置的字符
+            // charCodeAt() //返回指定索引位置字符的 Unicode 值
+            // concat() //连接两个或多个字符串，返回连接后的字符串
+            // fromCharCode() //将 Unicode 转换为字符串
+            // indexOf() //返回字符串中检索指定字符第一次出现的位置
+            // lastIndexOf() //返回字符串中检索指定字符最后一次出现的位置
+            // localeCompare() //用本地特定的顺序来比较两个字符串
+            // match() //找到一个或多个正则表达式的匹配
+            // replace() //替换与正则表达式匹配的子串
+            // search()     //检索与正则表达式相匹配的值
+            // slice() //提取字符串的片断，并在新的字符串中返回被提取的部分
+            // split()  //把字符串分割为子字符串数组
+            // substr() //从起始索引号提取字符串中指定数目的字符
+            // substring() //提取字符串中两个指定的索引号之间的字符
+            // toLocaleLowerCase() //根据主机的语言环境把字符串转换为小写，只有几种语言（如土耳其语）具有地方特有的大小写映射
+            // toLocaleUpperCase() //根据主机的语言环境把字符串转换为大写，只有几种语言（如土耳其语）具有地方特有的大小写映射
+            // toLowerCase() //把字符串转换为小写
+            // toString()   //返回字符串对象值
+            // toUpperCase() //	把字符串转换为大写
+            // trim()   //移除字符串首尾空白
+            // valueOf() //返回某个字符串对象的原始值
+        txt1 = 'What a '
+        txt2 = 'good day'
+        txt3 = txt1 + txt2 //What a good day
+            //字符串和数字,布尔值，null相加会返回字符串
+        var z = '         ' + 5 //html会压缩空格，但在控制台效果空格仍然占用长度
+        txt4 = 1 + true; //2
+        txt4 = 1 + false; //1
+        txt4 = null + true; //1
+        var str = new String('string')
+            //控制台输入str能查看String数据类型的方法和属性
+
+        //总结：
+        //如果 % 左边的操作数是正数，则模除的结果为正数或零；
+        //如果 % 左边的操作数是负数，则模除的结果为负数或零。
+        // 1、字符串一个很能强大的数据类型；在执行加 + 时,将被加的对象统一处理为字符串。
+
+        // 2、bool 类型在与数字类型进行相加时，视为 0 或者 1 处理。
+
+        // 3、null 类型与数字类型进行累加时，视为 0 处理。
+
+        // 4、bool 类型与 null 类型进行累加时，视为其与整数类型累加处理。
+
+        // 5、undefined 除了与字符串进行累加时有效（undefined 视为字符串"undefined"处理），其他情况皆返回 NaN。
+
+        //当字符串为‘数字’时，字符串与数字做减法可变为number类型
+        // alert('1' - 1) //0
+        // alert('ac' - 1) //NaN
+    </script>
+
+</body>
+
+</html>

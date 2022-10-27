@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var cars = ['volvo', 'BMW', 'Saab', 'ford']
+        var i = 0
+        for (; cars[i];) { //当cars[i]为undefined时，for循环终止
+            document.write(cars[i] + '<br>')
+            i++
+        }
+        var i = 0
+        while (cars[i]) {
+            document.write(cars[i] + '<br>')
+            i++
+        }
+        //while和do...while区别就是后者至少执行一次
+        var number = [1, 2, 3, 4, 5, 6]
+        var i = 0;
+        while (i < 0) {
+            document.write('while:' + number[i])
+            i++
+        }
+        do {
+            document.write('do...while:' + number[i] + '<br>')
+        } while (i < 0)
+        //for...in循环会跳过那些没被赋值的元素，而for循环不会
+        var i = 0
+        var arr = new Array();
+        arr[0] = 1;
+        arr[3] = 2;
+        arr[6] = 3;
+        arr[10] = 4;
+        for (x in arr) {
+            document.writeln(arr[x]);
+        }
+        document.write('<br>')
+        for (; i < 4; i++) {
+            document.writeln(arr[i]);
+        }
+    </script>
+</body>
+
+</html>
