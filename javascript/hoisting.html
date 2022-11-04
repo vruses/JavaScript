@@ -1,0 +1,47 @@
+<!--
+ * @Author: LayneH
+ * @Date: 2022-11-04 20:09:29
+ * @LastEditors: Do not edit
+ * @LastEditTime: 2022-11-04 22:03:17
+ * @FilePath: \html\javascript\hoisting.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>变量提升</title>
+</head>
+
+<body>
+    <script>
+        /* 函数声明和变量声明总是会被解释器悄悄地被"提升"到方法体的最顶部。 */
+        x = 1;
+        foo(); //函数提升
+        console.log(x)
+        var x = 2; //变量x提升，但x=2未提升
+        function foo() {
+            console.log(2)
+        }
+        /* 函数提升优先于变量提升 */
+
+        bar = function() { //虽然变量和函数都会提升，但变量赋值依然保留在原来的位置
+            console.log("last")
+        }
+        bar(); //last，函数提升
+        function bar() {
+            console.log("first")
+        }
+        var bar //匿名函数，变量提升
+            //忘记声明就使用了变量，这样做js代码在执行的时候不报错，只是返回了一个undefined。这种情况就是变量提升。
+            //计算机执行的时候会把未声明就使用的变量隐式的放到代码的最顶端。 
+            //需要注意的是变量虽然发生了提升， 但是给变量赋的值是不会随之提升的，所以就会得到结果undefined。
+        console.log(y) //undefined
+        var y = 1; //变量y提升，y=2未提升
+        console.log(y) //1
+    </script>
+</body>
+
+</html>
