@@ -2,8 +2,8 @@
  * @Author: LayneH
  * @Date: 2022-10-22 17:02:05
  * @LastEditors: Do not edit
- * @LastEditTime: 2022-10-24 16:10:09
- * @FilePath: \html\debug\RegularExpression.html
+ * @LastEditTime: 2022-11-04 17:39:09
+ * @FilePath: \html\javascript\RegularExpression.html
 -->
 <!DOCTYPE html>
 <html lang="en">
@@ -42,14 +42,19 @@
         var n = str.search(/runoob/i)
         alert("search方法返回子串位置:" + n) //6
         var n = str.search("runoob"); //字符串参数会转换为正则表达式,找不到返回-1
-        alert(n) //-1
+        alert("找不到字串返回:" + n) //-1
 
         // replace() 方法用于在字符串中用一些字符串替换另一些字符串，或替换一个与正则表达式匹配的子串。
 
-        var str = "hello runoob"
+        var str = "hello,runoob|123"
         var txt = str.replace(/runoob/, "world")
         alert("replace替换字符串：" + txt) //hello world
-        var txt = str.replace(/[a]/i, "bc")
+        var txt = str.replace(/[lo]/ig, "A") //将str里的lo不区分大小写全部替换成"A"
+        var txt = str.replace(/[1-3]/g, "B") //将数字1，2，3全部替换成"B"
+        var txt = str.replace(/b|1/g, "C") //将以|分隔的两边字符用"C"代替
+        var txt = str.replace(/\d/g, "D") // 查找全部数字并用"D"替换
+        var txt = str.replace(/\b/g, "E") //\b表示字符串边缘，如"runoob|123"替换成"EunooE|E2E"
+        alert(txt)
 
 
 
@@ -63,20 +68,42 @@
 
         //exec() 方法用于检索字符串中的正则表达式的匹配。
         // 该函数返回一个数组， 其中存放匹配的结果。 如果未找到匹配， 则返回值为 null。
-        var x = /e/.exec("The best things in life are free!"); //true
-        alert(x)
-        console.log(x["length"]) //1
+        var x = /e/.exec("The best things in life are free!"); //e
+        alert("exec()函数返回一个数组：" + x)
+
+
+        //数组属性也可以通过x.length访问
+        /* console.log(x["length"]) //1
         console.log(x); //e
         console.log(x[0]) //e
         console.log(x[1]) //undefined
 
-        console.log("group:" + x.groups)
-        console.log("index;" + x.index)
-        console.log("input:" + x.input)
-        console.log("length:" + x.length)
-            // alert(z[0].index)
-        console.log(z.index)
+        console.log("group:" + x.groups) //undefined
+        console.log("index:" + x.index) //2
+        console.log("input:" + x.input) //The best things in life are free!
+        console.log("length:" + x.length) //1 */
 
+
+        /*是否带有小数*/
+        function isDecimal(strValue) {
+            var objRegExp = /^\d+\.\d+$/; //^代表字符开始位置，$代表字符结束位置，\d+代表匹配一位以上的数字
+            /* 注意：如果^出现在[]里如[^a-z\s]代表除了匹配a-z和空白字符的任意字符，即“非”的意思 */
+            return objRegExp.test(strValue); //如果字符串：strValue ∈ 正则表达式:objRegExp所表示的正则集，则返回true
+        }
+        /*校验是否中文名称组成 */
+        function ischina(str) {
+            var reg = /^[\u4E00-\u9FA5]{2,4}$/;
+            //\u4E00代表Unicode编码的第一个中文字符,\u9FA5代表最后一个中文字符，中文名字一般是2-4个字，{2,4}用来限制匹配长度
+            return reg.test(str); /*进行验证*/
+        }
+        /*校验邮件地址是否合法 */
+        function isEmail(str) {
+            var reg = /^\w+@[a-zA-Z0-9]{2,10}(?:\.[a-z]{2,4}){1,3}$/;
+            //\w表示匹配[A-za-z0-9_]
+            // ?:不参与字符串的替换，但利用好其预编译功能，可以有效加快正则匹配速度
+            // (?:\.[a-z]{2,4}){1,3}表示域名邮箱的存在，()是将里面的内容一起处理
+            return reg.test(str);
+        }
 
         /*正则表达式修饰符*/
         // 修饰符 描述
@@ -98,7 +125,7 @@
 
         // 量词	描述
         // n+	匹配任何包含至少一个 n 的字符串。
-        // n*	匹配任何包含零个或多个 n 的字符串。
+        // n*	匹配任何包含零个或多个 n 的字符串。（编译原理克林闭包）
         // n?	匹配任何包含零个或一个 n 的字符串
     </script>
 </body>
