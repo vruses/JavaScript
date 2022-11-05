@@ -1,0 +1,60 @@
+<!--
+ * @Author: LayneH
+ * @Date: 2022-11-05 10:26:42
+ * @LastEditors: Do not edit
+ * @LastEditTime: 2022-11-05 10:43:03
+ * @FilePath: \html\javascript\usestrict.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>严格模式</title>
+</head>
+
+<body>
+    <script>
+        //  "use strict" 指令在 JavaScript 1.8.5 (ECMAScript5) 中新增。
+        // 它不是一条语句，但是是一个字面量表达式，在 JavaScript 旧版本中会被忽略。
+        // "use strict" 的目的是指定代码在严格条件下执行。
+        // 严格模式下你不能使用未声明的变量。
+        /* 	"use strict" 指令只允许出现在脚本或函数的开头 */
+
+        // "use strict"
+        // x = 3.14 //x is not defined
+
+        myFunction(); //y is not defined
+        function myFunction() {
+            "use strict"
+            y = 3.14
+        }
+
+        //严格模式下还不允许删除变量或者对象delete x;不允许删除函数delete myFunction;不允许函数参数重名；不允许使用八进制
+        //不允许使用转移字符，不允许使用with和eval等等等
+
+        function f() {
+            return !this; //this指向全局对象，!this就是false
+        }
+
+        function f() {
+            "use strict"
+            return !this; //this的值为undefined，!this为true
+        } //使用构造函数时忘加new，将直接报错
+
+        // 为了向新的js版本过渡， 严格模式新增了一些保留字
+        /* implements
+        interface
+        let
+        package
+        private
+        protected
+        public
+        static
+        yield */
+    </script>
+</body>
+
+</html>
