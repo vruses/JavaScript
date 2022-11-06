@@ -1,0 +1,86 @@
+<!--
+ * @Author: LayneH
+ * @Date: 2022-11-06 09:26:18
+ * @LastEditors: Do not edit
+ * @LastEditTime: 2022-11-06 10:28:08
+ * @FilePath: \html\javascript\someEasyMistakes.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>一些易犯的错误</title>
+</head>
+
+<body>
+    <script>
+        var x = 0
+        if (x == 10); //false
+        if (x = 10); //true
+        if (x = 0); //false
+
+        var x = 10
+        var y = "10"
+        if (x == y); //true
+        if (x === y); //false
+        // 注意： switch语句会使用恒等计算式 === 进行比较
+
+        // JavaScript 中的所有数据都是以 64 位浮点型数据(float) 来存储。
+        // 所有的编程语言，包括 JavaScript，对浮点型数据的精确度都很难确定：
+        // 比如：
+        var x = 0.1;
+        var y = 0.2;
+        var z = x + y // z 的结果为 0.30000000000000004
+        if (z == 0.3); // 返回 false
+
+
+        /* 正确的分行 */
+        var x =
+            "Hello World!";
+
+        var x = "Hello \
+        World!";
+
+        var
+            x = "Hello World!";
+        // JavaScript 中，分号是可选的,在缺少了分号就无法正确解析代码的时候，JavaScript 才会填补分号。
+
+
+        /* 错误的分行 */
+        function myFunction() {
+            var power = 10;
+            return
+            power; //js会当成return;power;执行
+        }
+        //在 JavaScript 中，分号是可选的 。
+        // 由于 return 是一个完整的语句，所以 JavaScript 将关闭 return 语句。
+        //同样的，遇到if判断语句立马接';'的话{}方法体里的内容将会作为独立的代码块而一定会执行
+
+        /* 语句的分隔规则会导致一些意想不到的情形，这段代码写成了两行，看起来是两条独立的语句：
+        var y=x+f
+        (a+b).toString()
+        但第二行的圆括号却和第一行的f组成了一个函数调用，JavaScript会把这段代码看做：
+        var y=x+f(a+b).toString();
+        而这段代码的本意并不是这样。为了能让上述代码解析为两条不同的语句，必须手动填写行尾的显式分号。 */
+
+
+        /* 在 JavaScript 中, null 用于对象, undefined 用于变量，属性和方法。
+        对象只有被定义才有可能为 null，否则为 undefined。 */
+        if (typeof myObj !== "undefined" && myObj !== null); //测试对象存在需要先检测对象是否定义
+
+
+        /* 程序块作用域 */
+        //在每个代码块中 JavaScript 不会创建一个新的作用域，一般各个代码块的作用域都是全局的。
+
+        // 以下代码的的变量 i 返回 10，而不是 undefined：换用let关键字可避免
+        for (var i = 0; i < 10; i++) {
+            // some code
+        }
+        return i;
+    </script>
+</body>
+
+</html>
